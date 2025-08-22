@@ -1,73 +1,499 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Baraka Juma Portfolio</title>
-  <link rel="stylesheet" href="PORTFOLIO.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Baraka Juma | Freelance Web & Mobile Developer</title>
+  <meta name="description" content="Portfolio of Baraka Juma – Freelance developer in Tanzania specializing in Web Development, React Native apps, PHP, Spring Boot, and Databases." />
+  <meta name="author" content="Baraka Juma" />
+  <meta property="og:title" content="Baraka Juma – Freelance Developer" />
+  <meta property="og:description" content="Web & Mobile apps, APIs, databases and UI for businesses and startups." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="preview.jpg" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #0f172a;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --accent: #22d3ee;
+      --accent-2: #60a5fa;
+      --chip: #111827;
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --ring: rgba(34,211,238,0.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b1020 0%,#0b1020 40%,#0f172a 100%);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1100px;margin:0 auto;padding:0 1.2rem}
+    .btn{display:inline-flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#081018;padding:.9rem 1.1rem;border-radius:14px;font-weight:700;box-shadow:0 10px 30px rgba(34,211,238,.15);border:0}
+    .btn.outline{background:transparent;color:var(--text);border:1px solid #334155}
+    .btn.small{padding:.6rem .8rem;border-radius:12px;font-weight:600}
+    .chip{display:inline-flex;align-items:center;gap:.5rem;background:rgba(148,163,184,.08);border:1px solid rgba(148,163,184,.2);padding:.4rem .65rem;border-radius:999px;color:var(--muted);font-size:.85rem}
+    header{position:sticky;top:0;z-index:50;background:rgba(11,16,32,.6);backdrop-filter:blur(8px);border-bottom:1px solid rgba(148,163,184,.08)}
+    nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    nav .links{display:flex;gap:1rem;align-items:center}
+    nav a.link{padding:.55rem .8rem;border-radius:10px;color:var(--muted)}
+    nav a.link.active, nav a.link:hover{background:rgba(148,163,184,.08);color:var(--text)}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:4rem 0 2rem}
+    .badge{display:inline-flex;gap:.5rem;align-items:center;background:rgba(34,211,238,.12);border:1px solid var(--ring);padding:.35rem .6rem;border-radius:999px;color:#7dd3fc;font-weight:600}
+    .title{font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin:.8rem 0 1rem}
+    .muted{color:var(--muted)}
+    .hero-card{background:radial-gradient(1200px 500px at -20% -40%,rgba(96,165,250,.18),transparent 60%),linear-gradient(180deg,rgba(2,6,23,.6),rgba(2,6,23,.2));border:1px solid rgba(148,163,184,.12);padding:1.2rem;border-radius:18px}
+    .grid{display:grid;gap:1rem}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    .section{padding:3rem 0}
+    .section h2{font-size:1.8rem;margin:0 0 .75rem}
+    .card{background:linear-gradient(180deg,#0b1224, #0b1224 60%, #0b152b 100%);border:1px solid rgba(148,163,184,.12);border-radius:18px;padding:1rem;transition:transform .25s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(2,6,23,.6)}
+    .card .thumb{height:170px;background:#0a0f20;border-radius:14px;border:1px dashed rgba(148,163,184,.2);display:flex;align-items:center;justify-content:center}
+    .kpis{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+    .kpis .k{background:rgba(148,163,184,.06);border:1px solid rgba(148,163,184,.15);padding:.7rem .9rem;border-radius:12px}
+    .tools{display:flex;flex-wrap:wrap;gap:.6rem}
+    .tools .chip{background:rgba(148,163,184,.06)}
+    .timeline{position:relative;border-left:2px dashed rgba(148,163,184,.2);padding-left:1rem}
+    .timeline .t{margin:.8rem 0;padding-left:.3rem}
+    .projects-filter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+    .project-badges{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
+    .project-links{display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap}
+    .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:1.2rem}
+    input,textarea{width:100%;background:#0b1224;border:1px solid rgba(148,163,184,.2);border-radius:12px;padding:.85rem 1rem;color:var(--text);outline:none}
+    input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--ring)}
+    textarea{min-height:140px}
+    footer{border-top:1px solid rgba(148,163,184,.08);padding:2rem 0;margin-top:2rem;color:var(--muted)}
+    .credits{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+    .pill{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .6rem;border-radius:999px;border:1px solid rgba(148,163,184,.2);color:var(--muted)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    @media (max-width: 940px){
+      .hero, .contact{grid-template-columns:1fr}
+      .grid.cols-3{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 680px){
+      nav .links{display:none}
+      .grid.cols-3, .grid.cols-2{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
-
   <header>
     <div class="container">
-      <h1>Baraka Juma</h1>
-      <p>Graphics Designer | Web Developer | Computer Consultant</p>
+      <nav>
+        <a href="#home" class="logo" aria-label="Go to home">
+          <span class="chip">🧭 <strong>Baraka&nbsp;Juma</strong></span>
+        </a>
+        <div class="links">
+          <a class="link" href="#services">Services</a>
+          <a class="link" href="#projects">Projects</a>
+          <a class="link" href="#skills">Skills</a>
+          <a class="link" href="#about">About</a>
+          <a class="link" href="#contact">Contact</a>
+        </div>
+      </nav>
     </div>
   </header>
 
-  <section class="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>I am a graphics designer and web developer. I’m also a skilled computer consultant with networking, repair, and maintenance expertise.</p>
-      <h3>Skills</h3>
-      <ul>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-        <li>Bootstrap</li>
-        <li>Adobe Photoshop</li>
-        <li>PHP</li>
-        <li>React</li>
-        <li>Figma</li>
-      </ul>
-    </div>
-  </section>
+  <main id="home" class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <span class="badge">Available for freelance • Tanzania (Remote/On‑site)</span>
+        <h1 class="title">Web & Mobile Developer building fast, reliable solutions for SMEs and startups.</h1>
+        <p class="muted">I design and develop websites, React Native apps, REST APIs, and databases. Let’s ship your idea—from prototype to production.</p>
+        <div style="display:flex;gap:.7rem;margin:1.2rem 0 0">
+          <a href="#contact" class="btn">Start a Project</a>
+          <a href="#projects" class="btn outline">See Projects</a>
+        </div>
+        <div class="kpis" aria-label="quick metrics">
+          <div class="k"><strong>15+</strong><br><span class="muted">Completed mini‑projects</span></div>
+          <div class="k"><strong>4</strong><br><span class="muted">Major builds</span></div>
+          <div class="k"><strong>3</strong><br><span class="muted">Years coding</span></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="grid cols-2">
+          <div class="card">
+            <div class="thumb">📱</div>
+            <div style="padding:.6rem .2rem .2rem">
+              <h3 style="margin:.2rem 0">Fishermen Emergency Alert App</h3>
+              <p class="muted" style="margin:0">React Native (Expo) app to broadcast SOS to nearby fishermen and first responders, with first‑aid tips.</p>
+              <div class="project-badges">
+                <span class="chip">React Native</span>
+                <span class="chip">Expo</span>
+                <span class="chip">Notifications</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="thumb">🛒</div>
+            <div style="padding:.6rem .2rem .2rem">
+              <h3 style="margin:.2rem 0">Online Products Selling Site</h3>
+              <p class="muted" style="margin:0">Multi‑role web app (seller/buyer/admin) with login, chat, product uploads, and sales tracking.</p>
+              <div class="project-badges">
+                <span class="chip">HTML/CSS/JS</span>
+                <span class="chip">PHP</span>
+                <span class="chip">MySQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="thumb">💬</div>
+            <div style="padding:.6rem .2rem .2rem">
+              <h3 style="margin:.2rem 0">PHP Chat System</h3>
+              <p class="muted" style="margin:0">Simple multi‑user chat with login, chat list, and real‑time style polling—no Firebase.</p>
+              <div class="project-badges">
+                <span class="chip">PHP (procedural)</span>
+                <span class="chip">JS</span>
+                <span class="chip">MySQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="thumb">🧱</div>
+            <div style="padding:.6rem .2rem .2rem">
+              <h3 style="margin:.2rem 0">Spring Boot CRUD API</h3>
+              <p class="muted" style="margin:0">Three‑layer architecture with PostgreSQL and DTOs; tested with Postman.</p>
+              <div class="project-badges">
+                <span class="chip">Java</span>
+                <span class="chip">Spring Boot</span>
+                <span class="chip">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section class="services">
-    <div class="container">
+    <!-- SERVICES -->
+    <section id="services" class="section">
       <h2>Services</h2>
-      <ul>
-        <li>Photo Editing</li>
-        <li>Web Design</li>
-        <li>Poster Design</li>
-        <li>Menu Design</li>
-        <li>Logo Design</li>
-        <li>Database Management</li>
-      </ul>
-    </div>
-  </section>
+      <p class="muted">Flexible packages for startups, NGOs, and SMEs. Clear timelines and documentation.</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Website Design & Development</h3>
+          <p class="muted">Responsive sites, landing pages, and dashboards using HTML, CSS, and JavaScript.</p>
+          <div class="tools">
+            <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Mobile Apps</h3>
+          <p class="muted">Cross‑platform apps with React Native (Expo), push notifications, offline‑first patterns.</p>
+          <div class="tools">
+            <span class="chip">React Native</span><span class="chip">Expo</span><span class="chip">OneSignal/Twilio</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>APIs & Backends</h3>
+          <p class="muted">RESTful APIs, auth, and integrations with PHP or Spring Boot.</p>
+          <div class="tools">
+            <span class="chip">PHP</span><span class="chip">Spring Boot</span><span class="chip">Postman</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Database Design</h3>
+          <p class="muted">Schema design, migrations, optimization, and backups.</p>
+          <div class="tools">
+            <span class="chip">MySQL</span><span class="chip">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Branding & UI</h3>
+          <p class="muted">Logos, product labels, and simple UI kits (e.g., Careen Castor Oil branding).</p>
+          <div class="tools">
+            <span class="chip">Figma</span><span class="chip">Canva</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>ICT Support</h3>
+          <p class="muted">Networking basics, troubleshooting, and deployment guidance.</p>
+          <div class="tools">
+            <span class="chip">LAN/Wi‑Fi</span><span class="chip">Windows</span><span class="chip">Hosting</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section class="projects">
-    <div class="container">
-      <h2>My Work</h2>
-      <p>Project samples will appear here. Add images/screenshots of your designs and websites.</p>
-    </div>
-  </section>
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <h2>Featured Projects</h2>
+      <div class="projects-filter" role="group" aria-label="Filter projects">
+        <button class="btn small outline" data-filter="all">All</button>
+        <button class="btn small outline" data-filter="web">Web</button>
+        <button class="btn small outline" data-filter="mobile">Mobile</button>
+        <button class="btn small outline" data-filter="api">API/Backend</button>
+      </div>
+      <div class="grid cols-3" id="projectGrid">
+        <!-- Fishermen App -->
+        <article class="card project" data-tags="mobile">
+          <div class="thumb" aria-hidden="true">📱</div>
+          <h3>Fishermen Emergency Alert System</h3>
+          <p class="muted">SOS broadcasting to nearby fishermen with first‑aid tips and notifications.</p>
+          <div class="project-badges">
+            <span class="chip">React Native</span>
+            <span class="chip">Expo</span>
+            <span class="chip">OneSignal</span>
+          </div>
+          <div class="project-links">
+            <a class="pill" href="#" title="Source code link placeholder">🔗 Code</a>
+            <a class="pill" href="#" title="Case study PDF placeholder">📄 Case Study</a>
+            <a class="pill" href="#" title="Demo video link placeholder">▶ Demo</a>
+          </div>
+        </article>
 
-  <section class="contact">
-    <div class="container">
-      <h2>Contact Me</h2>
-      <p>Email: <a href="mailto:barakajuma919@gmail.com">barakajuma919@gmail.com</a></p>
-      <p>WhatsApp: <a href="https://wa.me/255613913733" target="_blank">+255 613 913 733</a></p>
-      <p>Instagram: <a href="https://instagram.com/rammy_Juma" target="_blank">@rammy_Juma</a></p>
-    </div>
-  </section>
+        <!-- Online Store -->
+        <article class="card project" data-tags="web api">
+          <div class="thumb" aria-hidden="true">🛒</div>
+          <h3>Online Products Selling Site</h3>
+          <p class="muted">Sellers upload products, buyers purchase and chat; admin oversight and analytics.</p>
+          <div class="project-badges">
+            <span class="chip">PHP</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">HTML/CSS/JS</span>
+          </div>
+          <div class="project-links">
+            <a class="pill" href="#">🔗 Code</a>
+            <a class="pill" href="#">🖼 Screenshots</a>
+          </div>
+        </article>
+
+        <!-- Chat System -->
+        <article class="card project" data-tags="web api">
+          <div class="thumb" aria-hidden="true">💬</div>
+          <h3>Multi‑User Chat (PHP)</h3>
+          <p class="muted">Lightweight messaging without Firebase; login, chat list, and polling.</p>
+          <div class="project-badges">
+            <span class="chip">PHP</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">MySQL</span>
+          </div>
+          <div class="project-links">
+            <a class="pill" href="#">🔗 Code</a>
+            <a class="pill" href="#">🖼 Screenshots</a>
+          </div>
+        </article>
+
+        <!-- Spring Boot CRUD -->
+        <article class="card project" data-tags="api web">
+          <div class="thumb" aria-hidden="true">🧱</div>
+          <h3>Spring Boot CRUD API</h3>
+          <p class="muted">Three‑layer architecture with DTOs; PostgreSQL storage and Postman tests.</p>
+          <div class="project-badges">
+            <span class="chip">Java</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">Postman</span>
+          </div>
+          <div class="project-links">
+            <a class="pill" href="#">🔗 Code</a>
+            <a class="pill" href="#">📄 API Docs</a>
+          </div>
+        </article>
+
+        <!-- Branding -->
+        <article class="card project" data-tags="web">
+          <div class="thumb" aria-hidden="true">🎨</div>
+          <h3>Careen Castor Oil – Branding</h3>
+          <p class="muted">Logo and label concept for a hair‑care product.</p>
+          <div class="project-badges">
+            <span class="chip">Branding</span>
+            <span class="chip">UI</span>
+          </div>
+          <div class="project-links">
+            <a class="pill" href="#">🖼 Mockups</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>Frontend</h3>
+          <div class="tools">
+            <span class="chip">HTML5</span>
+            <span class="chip">CSS3</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Responsive Design</span>
+            <span class="chip">Accessibility</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Mobile</h3>
+          <div class="tools">
+            <span class="chip">React Native</span>
+            <span class="chip">Expo</span>
+            <span class="chip">Push Notifications</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Backend</h3>
+          <div class="tools">
+            <span class="chip">PHP (procedural)</span>
+            <span class="chip">Java (Spring Boot)</span>
+            <span class="chip">REST APIs</span>
+            <span class="chip">Auth/OTP</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Databases</h3>
+          <div class="tools">
+            <span class="chip">MySQL</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">XAMPP</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Tools</h3>
+          <div class="tools">
+            <span class="chip">Git/GitHub</span>
+            <span class="chip">Postman</span>
+            <span class="chip">Figma/Canva</span>
+            <span class="chip">VS Code</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Soft Skills</h3>
+          <div class="tools">
+            <span class="chip">Communication</span>
+            <span class="chip">Documentation</span>
+            <span class="chip">Client Support</span>
+            <span class="chip">Teamwork</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2>About</h2>
+      <div class="grid cols-2">
+        <div>
+          <p class="muted">I’m Baraka Juma, a recent Computer Science graduate based in Tanzania. I build practical, reliable software—websites, mobile apps, and backends—for real users. I enjoy football (CB) and PES when I’m not coding. My approach is simple: understand your goals, plan clearly, and deliver with quality.</p>
+          <div class="timeline">
+            <div class="t"><strong>2025</strong> — Built Spring Boot CRUD API with PostgreSQL, Postman‑tested.</div>
+            <div class="t"><strong>2024</strong> — Final‑year project: Fishermen Emergency Alert System (React Native, Expo).</div>
+            <div class="t"><strong>2023</strong> — Launched first PHP chat and e‑commerce prototypes.</div>
+          </div>
+        </div>
+        <aside class="card">
+          <h3>Quick Facts</h3>
+          <ul class="muted">
+            <li>Based in Dar es Salaam, Tanzania (open to remote).</li>
+            <li>Focus: Web apps, Mobile apps, APIs, Databases.</li>
+            <li>Languages: English, Swahili.</li>
+          </ul>
+          <div style="margin-top:.8rem;display:flex;gap:.6rem;flex-wrap:wrap">
+            <a class="btn small" href="#contact">Hire Me</a>
+            <a class="btn small outline" href="#" download>Download CV (PDF)</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="contact">
+        <form class="card" name="contact-form" aria-label="contact form" onsubmit="event.preventDefault(); alert('Thanks! I will reply to your message shortly.'); this.reset();">
+          <label class="sr-only" for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" required>
+
+          <div style="height:.6rem"></div>
+          <label class="sr-only" for="email">Email</label>
+          <input id="email" type="email" name="email" placeholder="Your email" required>
+
+          <div style="height:.6rem"></div>
+          <label class="sr-only" for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project" required></textarea>
+
+          <div style="display:flex;gap:.6rem;align-items:center;justify-content:space-between;margin-top:.6rem;flex-wrap:wrap">
+            <div class="tools">
+              <span class="chip">Avg. response &lt; 24h</span>
+              <span class="chip">Swahili / English</span>
+            </div>
+            <button class="btn">Send Message</button>
+          </div>
+        </form>
+
+        <aside>
+          <div class="card">
+            <h3>Business</h3>
+            <p class="muted">Prefer WhatsApp or email? Reach me directly.</p>
+            <div style="display:flex;flex-direction:column;gap:.5rem">
+              <a class="pill" href="mailto:barakajuma919@gmail.com">✉ barakajuma919@gmail.com</a>
+              <a class="pill" href="#" title="Add your WhatsApp link (e.g., https://wa.me/255...)">💬 WhatsApp</a>
+              <a class="pill" href="#" title="Add your GitHub profile link">🐙 GitHub</a>
+              <a class="pill" href="#" title="Add your LinkedIn profile link">🔗 LinkedIn</a>
+            </div>
+          </div>
+          <div class="card" style="margin-top:1rem">
+            <h3>Downloads & Files</h3>
+            <p class="muted">Project files and documents (placeholders—replace with your links):</p>
+            <ul>
+              <li><a class="pill" href="#">📦 Fishermen App – Source (ZIP)</a></li>
+              <li><a class="pill" href="#">📄 Fishermen App – Report (PDF)</a></li>
+              <li><a class="pill" href="#">📦 Online Store – Code (ZIP)</a></li>
+              <li><a class="pill" href="#">📄 Spring Boot API – Docs (PDF)</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Baraka Juma. All Rights Reserved.</p>
+      <div class="credits">
+        <span class="chip">© <span id="year"></span> Baraka Juma</span>
+        <span class="chip">Dar es Salaam, Tanzania</span>
+        <span class="chip">Freelance • Web & Mobile</span>
+      </div>
     </div>
   </footer>
 
+  <script>
+    // Active link on scroll
+    const sections = document.querySelectorAll('main section');
+    const navLinks = document.querySelectorAll('nav a.link');
+    const setActive = () => {
+      const pos = window.scrollY + 80;
+      sections.forEach(sec => {
+        if (pos >= sec.offsetTop && pos < sec.offsetTop + sec.offsetHeight) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const link = document.querySelector(`nav a[href="#${sec.id}"]`);
+          if (link) link.classList.add('active');
+        }
+      })
+    }
+    window.addEventListener('scroll', setActive);
+    window.addEventListener('load', () => {
+      setActive();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+
+    // Project filter
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    const cards = document.querySelectorAll('.project');
+    filterButtons.forEach(btn => btn.addEventListener('click', () => {
+      const f = btn.getAttribute('data-filter');
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      cards.forEach(card => {
+        if (f === 'all') return card.style.display = '';
+        const tags = card.getAttribute('data-tags');
+        card.style.display = tags.includes(f) ? '' : 'none';
+      });
+    }));
+  </script>
 </body>
 </html>
